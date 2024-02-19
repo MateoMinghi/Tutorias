@@ -1,2 +1,2 @@
 # C-
-para ver mi progreso en c++
+Tutorías que voy a impartir en c++
