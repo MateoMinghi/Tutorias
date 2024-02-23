@@ -35,40 +35,26 @@ public:
   string etiqueta{}, cuadrante{};
 ``` 
 
-Nótese cómo establecemos los atributos de la clase como públicos. En otros casos se pueden establecer como privados y hacer uso del concepto de encapsulación. La encapsulación es un concepto de la POO que implica ocultar los detalles internos de la implementación de una clase y exponer solo lo necesario. 
+Un punto se identifica por sus coordenadas en los ejes (x,y). Los demás atributos nos ayudarán a determinar si tres puntos generan un triángulo válido.
+
+Nótese cómo establecemos los atributos de la clase como públicos. En otros casos se pueden establecer como privados y hacer uso de la encapsulación. La encapsulación es un concepto de la POO que implica ocultar los detalles internos de la implementación de una clase y exponer solo lo necesario. 
 Se logra mediante la definición de atributos y/o métodos como privados o públicos. Aquellos atributos que sean privados se deberán acceder y modeificar por medio de métodos llamados *getters* y *setters*
+
 
 ### Constructores:
 
 Los constructores son métodos especiales utilizados para inicializar los atributos de un objeto cuando se crea una nueva instancia de la clase.
 Ayudan a establecer un estado inicial coherente para el objeto.
 
-Existen constructores por omisión y parametrados.
-
-
-
-### Herencia:
-
-La herencia es otro concepto en el que se permite crear una nueva clase basada en una clase existente, heredando sus atributos y métodos.
-Facilita la reutilización de código y la creación de jerarquías de clases.
-
-
-### Polimorfismo:
-
-El polimorfismo permite que objetos de diferentes clases respondan a un mismo mensaje o acción de manera específica para cada clase.
-Puede manifestarse a través de la sobreescritura de métodos en las clases derivadas.
-
-
+Existen constructores por omisión y parametrados. Por motivos educativos, en este programa utilizamos los dos:
 
 ```cpp
-#include <iostream>
-#include <iomanip>
-#include <cmath> 
-using namespace std;
+    Punto();
+    Punto(double X, double Y, string e);
+```
+Note cómo el constructor tiene que tener exactamente el mismo nombre que la clase. También vale la pena resaltar que esta es meramente la definición de los constructores. Es buena práctica dejar dentro de la clase solamente las definiciones de los constructores y los métodos; y las implementaciones afuera de ellas. Incluso lo ideal es separar las definiciones en documentos .h, tal y como se muestra en la Actividad05 en el repositorio.
 
-//cuando las funciones reciban objetos, usar referencias
-
-
+```cpp
 class Punto{
 public:
   double x{}, y{};
@@ -83,7 +69,10 @@ public:
   void imprimePunto();
   void imprimeInfo(); 
 };
+```
+La definición de nuestra clase "Punto está terminada". Ahora sí vamos a completar los constructores para crear los puntos:
 
+```cpp
 Punto::Punto(){
   cout << "ingrese la coordenada en x: ";
   cin >> x;
@@ -102,8 +91,14 @@ Punto::Punto(double X, double Y, string e){
   determinaCuadrante();
   calculaAngulo();
 }
+```
+El primer constructor es por omisión. Nótese como no lleva nada dentro del paréntesis. Eso nos permite asignarle valor a los atributos directamente dentro del programa. El segundo constructor, por parámetros, crea una copia de los atributos que componen al objeto, para asignarles valor en la función main(). Esto hará más sentido más adelante. 
 
-void Punto::determinaCuadrante() {
+Un programa no necesariamente requiere tener ambos tipos de constructores, pero resulta útil conocer ambos para diferentes tipos de implementaciones.
+
+Ahora implementemos todas las funciones:
+ ```cpp
+ void Punto::determinaCuadrante() {
 if (x >= 0 && y >= 0) {
     cuadrante = "1";
 } else if (x < 0 && y >= 0) {
@@ -137,9 +132,19 @@ void Punto::imprimePunto(){
 void Punto::imprimeInfo(){
   cout << "El punto " << etiqueta << " se encuentra en el cuadrante " << cuadrante << ", con un ángulo de " << angulo << endl;
 }
+ ```
+
+Sin entrar en demasiado detalle, estas funciones determinan en qué cuadrante se encuentran los puntos generados, y determinan si los puntos generan un triángulo válido.
 
 
+### Herencia:
+La clase "Punto" está lista. Con ella podemos crear una nueva clase llamada "Triangulo" y hacer uso de la herencia.
 
+
+La herencia es otro concepto en el que se permite crear una nueva clase basada en una clase existente, heredando sus atributos y métodos.
+Facilita la reutilización de código y la creación de jerarquías de clases.
+
+```cpp
 class Triangulo{
 public:
   Punto p0, p1, p2;
@@ -156,7 +161,13 @@ public:
   void imprimeTriangulo();
   
 };
+```
 
+La clase "Punto" va a heredar a la clase "Triangulo". Note cómo en los atributos definimos uno de de tipo Punto (se tiene que llamar exactamente igual que la clase). 
+
+También note cómo se establecieron los parámetros del constructor parametrado, utilizando objetos de tipo Punto:
+
+```cpp
 Triangulo::Triangulo() : p0{}, p1{}, p2{}{
  cin >> etiqueta;
  area = 0.0;
@@ -165,14 +176,27 @@ Triangulo::Triangulo() : p0{}, p1{}, p2{}{
  calculaArea();
 }
 
-Triangulo::Triangulo(string e, double a, double p, Punto punto0, Punto punto1, Punto punto2): p0(punto0), p1(punto1), p2(punto2), etiqueta(e), area(a), perimetro(p){
+Triangulo::Triangulo(string e, double a, double p, Punto punto0, Punto punto1, Punto punto2){
 etiqueta = e;
 area = a;
 perimetro = p;
 calculaPerimetro();
 calculaArea();
 }
+```
 
+Solo por cultura, y espero no confundir a nadie, los constructores parametrados también pueden ser implementados de la siguiente manera:
+
+```cpp
+Triangulo::Triangulo(string e, double a, double p, Punto punto0, Punto punto1, Punto punto2): p0(punto0), p1(punto1), p2(punto2), etiqueta(e), area(a), perimetro(p){
+calculaPerimetro();
+calculaArea();
+}
+```
+
+Independientemente de cómo decidan implementarlos, noten cómo todos los objetos que vienen de la clase "Punto" deben ser definidos como de tipo "Punto". Continuemos con los métodos:
+
+```cpp
 double Triangulo::distanciaLado(Punto &pA, Punto &pB) {
   return sqrt(pow(pB.x - pA.x, 2) + pow(pB.y - pA.y, 2));
 }
@@ -190,7 +214,23 @@ bool Triangulo::esValido() {
     }
     return true;
 }
+```
+Quiero enfatizar en los parámetros que se usan en este método *distanciaLado(Punto &pA, Punto &pB)*. Nótese la utilziación del símbolo "&" antes de los atributos. Eso es una referencia. Sin entrar en muchos detalles de nuevo, la idea es que no tengamos que crear copias nuevas de variables que ya existen porque no es eficiente en memoria. Una referencia, valga la redundancia, refiere a una dirección en memoria y se comporta como una variable normal. 
 
+Como ni yo mismo entiendo demasiado bien el concepto, lo importante a recordar es que cuando las funciones reciban objetos previamente creados, debemos usar referencias.
+
+Volviendo al tema, en la función *esValido()*, es notable la utilización de puntos "." dentro del primer condicional:
+
+```cpp
+if (p1.x == p2.x && p1.x == p2.x || p1.y == p2.y && p1.y == p2.y) {
+        return false;
+    }
+```
+Si examinamos bien el programa, recordaremos que "p1", "p2" y "p3" son objetos de tipo punto. Y dentro de la clase "Punto" tenemos las variables "x" y "y". Para acceder a esas variables utilizamos los puntos.
+
+Acabemos con el programa ptm
+
+```cpp
 void Triangulo::calculaPerimetro(){
   double ladoA = distanciaLado(p1, p2);
   double ladoB = distanciaLado(p0, p2);
@@ -234,3 +274,14 @@ int main() {
   t2.imprimeTriangulo();
 return 0;}
 ```
+
+Miren cómo tenemos dos maneras de crear una isntancia de la clase "Punto" (o en otras palabras, tenemos dos maneras de crear el objeto punto):
+
+Punto p1{3, 2, "A"}, p2{-8, 7, "B"}, p3{2, 6, "C"}; --- parametrado
+Punto p1; --- por omisión
+
+Del mismo modo tenemos dos maneras de instanciar a la clase Triangulo:
+
+Triangulo t1{"ABC", 0.0, 0.0, p1, p2, p3}; --- parametrado
+Triangulo t1;
+
