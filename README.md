@@ -16,8 +16,27 @@ Los métodos epresentan el comportamiento de los objetos y pueden modificar los 
 
 ### ¿Qué es un objeto?
 
-Los objetos son instancias concretas de una clase que representan entidades específicas.. Podemos entender las instancias como las transformaciones de clase a objeto. Para ello necesitamos los constructores. 
+Los objetos son instancias concretas de una clase que representan entidades específicas. Podemos entender las instancias como las transformaciones de clase a objeto. Para ello necesitamos los constructores. 
 
+Tomemos como ejemplo un programa que construye triángulos. Primero necesitamos generar los puntos que compondrán el triángulo: 
+
+```cpp
+// importamos las librerias
+#include <iostream>
+#include <iomanip>
+#include <cmath> 
+using namespace std;
+
+// definimos la clase punto
+class Punto{
+public:
+  double x{}, y{};
+  double angulo_radianes{}, angulo{};
+  string etiqueta{}, cuadrante{};
+``` 
+
+Nótese cómo establecemos los atributos de la clase como públicos. En otros casos se pueden establecer como privados y hacer uso del concepto de encapsulación. La encapsulación es un concepto de la POO que implica ocultar los detalles internos de la implementación de una clase y exponer solo lo necesario. 
+Se logra mediante la definición de atributos y/o métodos como privados o públicos. Aquellos atributos que sean privados se deberán acceder y modeificar por medio de métodos llamados *getters* y *setters*
 
 ### Constructores:
 
@@ -26,11 +45,6 @@ Ayudan a establecer un estado inicial coherente para el objeto.
 
 Existen constructores por omisión y parametrados.
 
-
-### Encapsulación:
-
-La encapsulación es un concepto de la POO que implica ocultar los detalles internos de la implementación de una clase y exponer solo lo necesario. 
-Se logra mediante la definición de atributos como privados o públicos. Aquellos atributos que sean privados se deberán acceder y modeificar por medio de métodos llamados *getters* y *setters*
 
 
 ### Herencia:
