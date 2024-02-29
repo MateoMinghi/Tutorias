@@ -49,8 +49,8 @@ Ayudan a establecer un estado inicial coherente para el objeto.
 Existen constructores por omisión y parametrados. Por motivos educativos, en este programa utilizamos los dos:
 
 ```cpp
-    Punto();
-    Punto(double X, double Y, string e);
+    Punto(); // por omisión
+    Punto(double X, double Y, string e); //parametrado
 ```
 Note cómo el constructor tiene que tener exactamente el mismo nombre que la clase. También vale la pena resaltar que esta es meramente la definición de los constructores. Es buena práctica dejar dentro de la clase solamente las definiciones de los constructores y los métodos; y las implementaciones afuera de ellas. Incluso lo ideal es separar las definiciones en documentos .h, tal y como se muestra en la Actividad05 en el repositorio.
 
