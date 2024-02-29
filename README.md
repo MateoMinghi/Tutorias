@@ -140,7 +140,6 @@ Sin entrar en demasiado detalle, estas funciones determinan en qué cuadrante se
 ### Herencia:
 La clase "Punto" está lista. Con ella podemos crear una nueva clase llamada "Triangulo" y hacer uso de la herencia.
 
-
 La herencia es otro concepto en el que se permite crear una nueva clase basada en una clase existente, heredando sus atributos y métodos.
 Facilita la reutilización de código y la creación de jerarquías de clases.
 
