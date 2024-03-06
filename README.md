@@ -12,7 +12,7 @@ Para ello, primero tenemos que entender el concepto de clase.
 Una *clase* es la plantilla de un objeto. Contiene todos los detalles y datos del objeto, los cuales llamaremos *atributos*. 
 
 Por otro lado, utilizaremos *métodos* para trabajar con esos atributos. Un método es una función. No hay más.
-Los métodos epresentan el comportamiento de los objetos y pueden modificar los atributos de la instancia o realizar acciones más complejas.
+Los métodos representan el comportamiento de los objetos y pueden modificar los atributos de la instancia o realizar acciones más complejas.
 
 ### ¿Qué es un objeto?
 
