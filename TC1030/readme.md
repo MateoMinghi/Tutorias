@@ -9,6 +9,6 @@ Tutorial recomendado por Bengie: https://www.youtube.com/watch?v=fsmVbLMzBoo
 
  Una vez que se hagan bolas para instalarlo, se puede comprobar si se instaló correctamente corriendo este comando en la terminal:
 
- ´´´
+ ```
  g++ --version
- ´´´
+ ```
