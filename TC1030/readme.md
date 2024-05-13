@@ -12,3 +12,9 @@ Tutorial recomendado por Bengie: https://www.youtube.com/watch?v=fsmVbLMzBoo
  ```
  g++ --version
  ```
+
+Si aparece la versión del compilador, está instalado correctamente. Si no, se hizo algo mal y no los culpo porque me tardé horas instalándolo.
+
+Ahora vamos a correr un programita para ver su funcionamiento. En un folder creamos un archivo llamado "experimento.pp". Dentro del mismo pondremos el siguiente código:
+
+
