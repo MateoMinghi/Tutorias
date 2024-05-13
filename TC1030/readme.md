@@ -1,4 +1,4 @@
-#### Instalación y Uso de MinGW 
+### Instalación y Uso de MinGW 
 
 Desgraciadamente, una computadora no entiende C++ por sí sola. Por ello, se requiere de un compilador para correr los programas.
 
