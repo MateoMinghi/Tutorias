@@ -136,11 +136,8 @@ void Punto::imprimeInfo(){
 Sin entrar en demasiado detalle, estas funciones determinan en qué cuadrante se encuentran los puntos generados, y determinan si los puntos generan un triángulo válido.
 
 
-### Herencia:
-La clase "Punto" está lista. Con ella podemos crear una nueva clase llamada "Triangulo" y hacer uso de la herencia.
-
-La herencia es otro concepto en el que se permite crear una nueva clase basada en una clase existente, heredando sus atributos y métodos.
-Facilita la reutilización de código y la creación de jerarquías de clases.
+### Composición:
+A la hora de diseñar nuestros programas, debemos pensar en cómo se va a relacionar una clase con otra. En nuestro caso, tendremos una relación "has-a", que implica que una clase se compone de objetos de otra clase. Como un triágulo se compone de múltiples puntos, sabemos que es buena idea usar composición. 
 
 ```cpp
 class Triangulo{
@@ -161,7 +158,7 @@ public:
 };
 ```
 
-La clase "Punto" va a heredar a la clase "Triangulo". Note cómo en los atributos definimos uno de de tipo Punto (se tiene que llamar exactamente igual que la clase). 
+Note cómo en los atributos definimos uno de de tipo Punto (se tiene que llamar exactamente igual que la clase). 
 
 También note cómo se establecieron los parámetros del constructor parametrado, utilizando objetos de tipo Punto:
 
@@ -215,7 +212,7 @@ bool Triangulo::esValido() {
 ```
 Quiero enfatizar en los parámetros que se usan en este método *distanciaLado(Punto &pA, Punto &pB)*. Nótese la utilziación del símbolo "&" antes de los atributos. Eso es una referencia. Sin entrar en muchos detalles de nuevo, la idea es que no tengamos que crear copias nuevas de variables que ya existen porque no es eficiente en memoria. Una referencia, valga la redundancia, refiere a una dirección en memoria y se comporta como una variable normal. 
 
-Como ni yo mismo entiendo demasiado bien el concepto, lo importante a recordar es que cuando las funciones reciban objetos previamente creados, debemos usar referencias.
+Entraré mas a detalle del tema en otro apunte. Por el momento tienes que saber que a esto que estamos haciendo se le llama paso por referencia.
 
 Volviendo al tema, en la función *esValido()*, es notable la utilización de puntos "." dentro del primer condicional:
 
